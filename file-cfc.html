@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO₂ Emisyon Hesaplayıcı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>CO₂ Emisyon Hesaplayıcı</h2>
+
+    <div id="soru1">
+        <label for="yillikElektrikKullanimi">Yıllık Elektrik Kullanımı (kWh): </label>
+        <input type="number" id="yillikElektrikKullanimi" placeholder="Örneğin: 1633286" required>
+        <br><br>
+        <button onclick="soru1Sonraki()">Sonraki Soru</button>
+    </div>
+
+    <div id="soru2" style="display: none;">
+        <label for="servisOtobusSayisi">Servis Otobüsü Sayısı: </label>
+        <input type="number" id="servisOtobusSayisi" placeholder="Örneğin: 15" required>
+        <br><br>
+        <label for="toplamSeferSayisi">Her Gün Servis Otobüsü İçin Toplam Sefer Sayısı: </label>
+        <input type="number" id="toplamSeferSayisi" placeholder="Örneğin: 150" required>
+        <br><br>
+        <label for="seyahatMesafesi">Her Gün Bir Araç İçin Kampüs İçinde Yaklaşık Seyahat Mesafesi (km): </label>
+        <input type="number" id="seyahatMesafesi" placeholder="Örneğin: 5" required>
+        <br><br>
+        <button onclick="soru2Sonraki()">Sonraki Soru</button>
+    </div>
+
+    <div id="soru3" style="display: none;">
+        <label for="aracSayisi">Üniversitenize Giren Araç Sayısı: </label>
+        <input type="number" id="aracSayisi" placeholder="Örneğin: 2000" required>
+        <br><br>
+        <button onclick="soru3Sonraki()">Sonraki Soru</button>
+    </div>
+
+    <div id="soru4" style="display: none;">
+        <label for="motosikletSayisi">Üniversitenize Giren Motosiklet Sayısı: </label>
+        <input type="number" id="motosikletSayisi" placeholder="Örneğin: 4000" required>
+        <br><br>
+        <button onclick="soru4Sonraki()">Sonraki Soru</button>
+    </div>
+
+    <div id="sonuclar" style="display: none;">
+        <button onclick="hesaplaToplamEmisyon()">Toplam Emisyonu Hesapla</button>
+        <br><br>
+        <div id="sonucElektrik"></div>
+        <div id="sonucUlasim"></div>
+        <div id="sonucArabaUlasim"></div>
+        <div id="sonucMotosikletUlasim"></div>
+        <div id="sonucToplamEmisyon"></div>
+        <br><br>
+        <button onclick="yenidenHesapla()">Yeniden Hesapla</button>
+    </div>
+
+    <script>
+        let soruIndex = 1;
+
+        function soru1Sonraki() {
+            const yillikElektrikKullanimi = parseFloat(document.getElementById("yillikElektrikKullanimi").value);
+            const kwhToMetrikTonKatsayisi = 0.84;
+            const co2Elektrik = (yillikElektrikKullanimi / 1000) * kwhToMetrikTonKatsayisi;
+            document.getElementById("sonucElektrik").innerHTML = `Elektrik kaynaklı CO₂ emisyonu: ${co2Elektrik.toFixed(2)} metrik ton`;
+
+            document.getElementById("soru1").style.display = "none";
+            document.getElementById("soru2").style.display = "block";
+            soruIndex++;
+        }
+
+        function soru2Sonraki() {
+            const servisOtobusSayisi = parseFloat(document.getElementById("servisOtobusSayisi").value);
+            const toplamSeferSayisi = parseFloat(document.getElementById("toplamSeferSayisi").value);
+            const seyahatMesafesi = parseFloat(document.getElementById("seyahatMesafesi").value);
+            const yillikIsGunSayisi = 240;
+            const katsayiUlasim = 0.01;
+            const ulasimCO2Emisyonu = ((servisOtobusSayisi * toplamSeferSayisi * yillikIsGunSayisi * seyahatMesafesi * 240) / 100) * katsayiUlasim;
+            document.getElementById("sonucUlasim").innerHTML = `Ulaşım (Servis) CO₂ emisyonu: ${ulasimCO2Emisyonu.toFixed(2)} metrik ton`;
+
+            document.getElementById("soru2").style.display = "none";
+            document.getElementById("soru3").style.display = "block";
+            soruIndex++;
+        }
+
+        function soru3Sonraki() {
+            const aracSayisi = parseFloat(document.getElementById("aracSayisi").value);
+            const seyahatMesafesiAraba = parseFloat(document.getElementById("seyahatMesafesi").value);
+            const katsayiAraba = 0.02;
+            const arabaUlasimCO2Emisyonu = ((aracSayisi * 2 * seyahatMesafesiAraba * 240) / 100) * katsayiAraba;
+            document.getElementById("sonucArabaUlasim").innerHTML = `Ulaşım (Araba) CO₂ emisyonu: ${arabaUlasimCO2Emisyonu.toFixed(2)} metrik ton`;
+
+            document.getElementById("soru3").style.display = "none";
+            document.getElementById("soru4").style.display = "block";
+            soruIndex++;
+        }
+
+        function soru4Sonraki() {
+            const motosikletSayisi = parseFloat(document.getElementById("motosikletSayisi").value);
+            const seyahatMesafesiMotosiklet = parseFloat(document.getElementById("seyahatMesafesi").value);
+            const katsayiMotosiklet = 0.01;
+            const motosikletUlasimCO2Emisyonu = ((motosikletSayisi * 2 * seyahatMesafesiMotosiklet * 240) / 100) * katsayiMotosiklet;
+            document.getElementById("sonucMotosikletUlasim").innerHTML = `Ulaşım (Motosiklet) CO₂ emisyonu: ${motosikletUlasimCO2Emisyonu.toFixed(2)} metrik ton`;
+
+            document.getElementById("soru4").style.display = "none";
+            document.getElementById("sonuclar").style.display = "block";
+        }
+
+        function hesaplaToplamEmisyon() {
+            const co2Elektrik = parseFloat(document.getElementById("sonucElektrik").innerHTML.split(": ")[1]);
+            const co2Ulasim = parseFloat(document.getElementById("sonucUlasim").innerHTML.split(": ")[1]);
+            const co2ArabaUlasim = parseFloat(document.getElementById("sonucArabaUlasim").innerHTML.split(": ")[1]);
+            const co2MotosikletUlasim = parseFloat(document.getElementById("sonucMotosikletUlasim").innerHTML.split(": ")[1]);
+
+            const toplamEmisyon = co2Elektrik + co2Ulasim + co2ArabaUlasim + co2MotosikletUlasim;
+            document.getElementById("sonucToplamEmisyon").innerHTML = `Toplam CO₂ emisyonu: ${toplamEmisyon.toFixed(2)} metrik ton`;
+        }
+
+        function yenidenHesapla() {
+            document.getElementById("soru1").style.display = "block";
+            document.getElementById("soru2").style.display = "none";
+            document.getElementById("soru3").style.display = "none";
+            document.getElementById("soru4").style.display = "none";
+            document.getElementById("sonuclar").style.display = "none";
+
+            // Burada gerekirse diğer input değerlerini sıfırlayabilirsiniz.
+            document.getElementById("yillikElektrikKullanimi").value = "";
+            document.getElementById("servisOtobusSayisi").value = "";
+            document.getElementById("toplamSeferSayisi").value = "";
+            document.getElementById("seyahatMesafesi").value = "";
+            document.getElementById("aracSayisi").value = "";
+            document.getElementById("motosikletSayisi").value = "";
+        }
+    </script>
+
+</body>
+</html>
