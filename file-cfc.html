@@ -4,24 +4,106 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CO₂ Emisyon Hesaplayıcı</title>
+    <link href="https://fonts.cdnfonts.com/css/museo-sans-rounded" rel="stylesheet">
+    <title>Karbon Ayakizi Hesaplayıcı</title>
     <style>
+        @import url('https://fonts.cdnfonts.com/css/museo-sans-rounded');
+
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
+           justify-content: center;
+           align-items: center;
+            background-size: 50%;
+            padding: 20px;
+            color: #ffffff; 
+            font-family: 'Museo Sans Rounded', sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Ekran yüksekliği kadar alanı kaplaması için */
+           background: #0da5b3
         }
+
+        img {
+            width: 200px;
+            height: auto;
+        }
+
+        h1 {
+            color: #333; /* Set heading text color */
+            font-family: 'Museo Sans Rounded', sans-serif;
+            position: relative;
+        }
+         .button-38 {
+            background-color: #FFFFFF;
+            border: 0;
+            border-radius: .5rem;
+            box-sizing: border-box;
+            color: #111827;
+            font-family: 'Museo Sans Rounded', sans-serif;
+            font-size: .875rem;
+            font-weight: 600;
+            line-height: 1.25rem;
+            padding: .75rem 1rem;
+            text-align: center;
+            text-decoration: none #D1D5DB solid;
+            text-decoration-thickness: auto;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-38:hover {
+        background-color: #f9fafbe4;
+        }
+
+        .button-38:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        }
+
+        .button-38:focus-visible {
+         box-shadow: none;
+        }
+
+        input {
+        padding: 5px 12px;
+                font-size: 14px;
+                margin-left: 10px;
+                line-height: 20px;
+                color: #24292e;
+                vertical-align: middle;
+                background-color: #ffffff;
+                background-repeat: no-repeat;
+                background-position: right 8px center;
+                border: 1px solid #e1e4e8;
+                border-radius: 6px;
+                outline: none;
+                box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+                :focus{
+                    border-color: #0366d6;
+                    outline: none;
+                    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+                }
+            }    
+
+            #sonucToplamEmisyon {
+                background-color:#FF5100;
+                font-weight: bold;
+            }
     </style>
 </head>
-<body>
 
-    <h2>CO₂ Emisyon Hesaplayıcı</h2>
+<body>
+    <img src="Bakırçay.png" alt="Bakırçay"/>
+    <h2>Karbon Ayakizi Hesaplayıcı</h2>
 
     <div id="soru1">
         <label for="yillikElektrikKullanimi">Yıllık Elektrik Kullanımı (kWh): </label>
         <input type="number" id="yillikElektrikKullanimi" placeholder="Örneğin: 1633286" required>
         <br><br>
-        <button onclick="soru1Sonraki()">Sonraki Soru</button>
+        <button onclick="soru1Sonraki()" class="button-38" role="button">Sonraki Soru</button>
+
     </div>
 
     <div id="soru2" style="display: none;">
@@ -34,25 +116,25 @@
         <label for="seyahatMesafesi">Her Gün Bir Araç İçin Kampüs İçinde Yaklaşık Seyahat Mesafesi (km): </label>
         <input type="number" id="seyahatMesafesi" placeholder="Örneğin: 5" required>
         <br><br>
-        <button onclick="soru2Sonraki()">Sonraki Soru</button>
+        <button onclick="soru2Sonraki()" class="button-38" role="button">Sonraki Soru</button>
     </div>
 
     <div id="soru3" style="display: none;">
         <label for="aracSayisi">Üniversitenize Giren Araç Sayısı: </label>
         <input type="number" id="aracSayisi" placeholder="Örneğin: 2000" required>
         <br><br>
-        <button onclick="soru3Sonraki()">Sonraki Soru</button>
+        <button onclick="soru3Sonraki()" class="button-38" role="button">Sonraki Soru</button>
     </div>
 
     <div id="soru4" style="display: none;">
         <label for="motosikletSayisi">Üniversitenize Giren Motosiklet Sayısı: </label>
         <input type="number" id="motosikletSayisi" placeholder="Örneğin: 4000" required>
         <br><br>
-        <button onclick="soru4Sonraki()">Sonraki Soru</button>
+        <button onclick="soru4Sonraki()" class="button-38" role="button">Sonraki Soru</button>
     </div>
 
     <div id="sonuclar" style="display: none;">
-        <button onclick="hesaplaToplamEmisyon()">Toplam Emisyonu Hesapla</button>
+        
         <br><br>
         <div id="sonucElektrik"></div>
         <div id="sonucUlasim"></div>
@@ -60,7 +142,8 @@
         <div id="sonucMotosikletUlasim"></div>
         <div id="sonucToplamEmisyon"></div>
         <br><br>
-        <button onclick="yenidenHesapla()">Yeniden Hesapla</button>
+        <button onclick="hesaplaToplamEmisyon()" class="button-38" role="button">Toplam Emisyonu Hesapla</button>
+        <button onclick="yenidenHesapla()" class="button-38" role="button">Yeniden Hesapla</button>
     </div>
 
     <script>
@@ -83,7 +166,7 @@
             const seyahatMesafesi = parseFloat(document.getElementById("seyahatMesafesi").value);
             const yillikIsGunSayisi = 240;
             const katsayiUlasim = 0.01;
-            const ulasimCO2Emisyonu = ((servisOtobusSayisi * toplamSeferSayisi * yillikIsGunSayisi * seyahatMesafesi * 240) / 100) * katsayiUlasim;
+            const ulasimCO2Emisyonu = ((servisOtobusSayisi * toplamSeferSayisi * yillikIsGunSayisi * seyahatMesafesi) / 100) * katsayiUlasim;
             document.getElementById("sonucUlasim").innerHTML = `Ulaşım (Servis) CO₂ emisyonu: ${ulasimCO2Emisyonu.toFixed(2)} metrik ton`;
 
             document.getElementById("soru2").style.display = "none";
@@ -131,7 +214,6 @@
             document.getElementById("soru4").style.display = "none";
             document.getElementById("sonuclar").style.display = "none";
 
-            // Burada gerekirse diğer input değerlerini sıfırlayabilirsiniz.
             document.getElementById("yillikElektrikKullanimi").value = "";
             document.getElementById("servisOtobusSayisi").value = "";
             document.getElementById("toplamSeferSayisi").value = "";
