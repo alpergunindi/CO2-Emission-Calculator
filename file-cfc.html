@@ -10,15 +10,15 @@
         @import url('https://fonts.cdnfonts.com/css/museo-sans-rounded');
 
         body {
-           justify-content: center;
-           align-items: center;
+           justify-content: left;
+           align-items: left;
             background-size: 50%;
             padding: 20px;
             color: #ffffff; 
             font-family: 'Museo Sans Rounded', sans-serif;
             display: flex;
             flex-direction: column;
-            height: 100vh; /* Ekran yüksekliği kadar alanı kaplaması için */
+            height: 100vh;
            background: #0da5b3
         }
 
@@ -28,7 +28,7 @@
         }
 
         h1 {
-            color: #333; /* Set heading text color */
+            color: #333;
             font-family: 'Museo Sans Rounded', sans-serif;
             position: relative;
         }
@@ -102,8 +102,20 @@
         <label for="yillikElektrikKullanimi">Yıllık bazda elektrik tüketiminizi giriniz (kWh): </label>
         <input type="number" id="yillikElektrikKullanimi" placeholder="Örneğin: 1633286" required>
         <br><br>
+    
+        <label for="dogalgazTuketimi">Yıllık bazda doğalgaz tüketiminizi giriniz (m³): </label>
+        <input type="number" id="dogalgazTuketimi" placeholder="Örneğin: 5000" required>
+        <br><br>
+    
+        <label for="motorinTuketimi">Yıllık bazda motorin/fuel oil tüketiminizi giriniz (litre): </label>
+        <input type="number" id="motorinTuketimi" placeholder="Örneğin: 1000" required>
+        <br><br>
+    
+        <label for="komurTuketimi">Yıllık bazda kömür tüketiminizi giriniz (ton): </label>
+        <input type="number" id="komurTuketimi" placeholder="Örneğin: 5" required>
+        <br><br>
+    
         <button onclick="soru1Sonraki()" class="button-38" role="button">Sonraki Soru</button>
-
     </div>
 
     <div id="soru2" style="display: none;">
@@ -120,26 +132,75 @@
     </div>
 
     <div id="soru3" style="display: none;">
-        <label for="aracSayisi">Üniversitenize Giren Araç Sayısını giriniz: </label>
-        <input type="number" id="aracSayisi" placeholder="Örneğin: 2000" required>
+         <label for="UcakSayisi">Yurtdışı ve yurtiçi uçulan uçak sayısını giriniz: </label>
+        <input type="number" id="ucakSayisi" placeholder="Örneğin: 2" required>
+        <br><br>
+        <label for="ToplamUcakSayisi">Yurtdışı ve yurtiçi uçulan Toplam sefer sayısını giriniz: </label>
+        <input type="number" id="toplamUcakSayisi" placeholder="Örneğin: 4" required>
+        <br><br>
+        <label for="ucakSeyahatMesafesi">Bir personel'in toplam yurtdışı ve yurtiçi uçak seyehat mesafesi'ni(km) giriniz:
+        </label>
+        <input type="number" id="ucakSeyahatMesafesi" placeholder="Örneğin: 4000" required>
         <br><br>
         <button onclick="soru3Sonraki()" class="button-38" role="button">Sonraki Soru</button>
     </div>
 
     <div id="soru4" style="display: none;">
-        <label for="motosikletSayisi">Üniversitenize Giren Motosiklet Sayısı'nı giriniz: </label>
-        <input type="number" id="motosikletSayisi" placeholder="Örneğin: 4000" required>
+        <label for="aracSayisi">Üniversitenize Giren Araç Sayısını giriniz: </label>
+        <input type="number" id="aracSayisi" placeholder="Örneğin: 2000" required>
         <br><br>
         <button onclick="soru4Sonraki()" class="button-38" role="button">Sonraki Soru</button>
     </div>
 
-    <div id="sonuclar" style="display: none;">
+    <div id="soru5" style="display: none;">
+        <label for="motosikletSayisi">Üniversitenize Giren Motosiklet Sayısı'nı giriniz: </label>
+        <input type="number" id="motosikletSayisi" placeholder="Örneğin: 4000" required>
+        <br><br>
+        <button onclick="soru5Sonraki()" class="button-38" role="button">Sonraki Soru</button>
+    </div>
+
+
+
+    <div id="soru6" style="display: none;">
+        <label for="gunesEnerjisi">Güneş Enerjisi Üretimini giriniz (kWh): </label>
+        <input type="number" id="gunesEnerjisi" placeholder="Örneğin: 100000" required>
+        <br><br>
+    
+        <label for="ruzgarEnerjisi">Rüzgar Enerjisi Üretimini giriniz (kWh): </label>
+        <input type="number" id="ruzgarEnerjisi" placeholder="Örneğin: 50000" required>
+        <br><br>
+    
+        <label for="biyogazEnerjisi">Biyogaz/Biyokütle Enerjisi Üretimini giriniz (kWh): </label>
+        <input type="number" id="biyogazEnerjisi" placeholder="Örneğin: 20000" required>
+        <br><br>
+    
+        <label for="jeotermalEnerjisi">Jeotermal Enerjisi Üretimini giriniz (kWh): </label>
+        <input type="number" id="jeotermalEnerjisi" placeholder="Örneğin: 30000" required>
+        <br><br>
+    
+        <label for="dogalgazTermikEnerjisi">Doğalgaz Termik Santral'de Doğalgaz Üretimini giriniz (kWh): </label>
+        <input type="number" id="dogalgazTermikEnerjisi" placeholder="Örneğin: 40000" required>
+        <br><br>
+    
+        <button onclick="soru6Sonraki()" class="button-38" role="button">Sonraki Soru</button>
+    </div>
+
+        <div id="sonuclar" style="display: none;">
         
         <br><br>
         <div id="sonucElektrik"></div>
+        <div id="sonucDogalgaz"></div>
+        <div id="sonucMotorin"></div>
+        <div id="sonucKomur"></div>
         <div id="sonucUlasim"></div>
         <div id="sonucArabaUlasim"></div>
         <div id="sonucMotosikletUlasim"></div>
+        <div id="sonucUcakUlasim"></div>
+        <div id="sonucGunes"></div>
+        <div id="sonucRuzgar"></div>
+        <div id="sonucBiyogaz"></div>
+        <div id="sonucJeotermal"></div>
+        <div id="sonucDogalgazTermik"></div>
         <div id="sonucToplamEmisyon"></div>
         <br><br>
         <button onclick="hesaplaToplamEmisyon()" class="button-38" role="button">Toplam Emisyonu Hesapla</button>
@@ -150,15 +211,30 @@
         let soruIndex = 1;
 
         function soru1Sonraki() {
-            const yillikElektrikKullanimi = parseFloat(document.getElementById("yillikElektrikKullanimi").value);
-            const kwhToMetrikTonKatsayisi = 0.84;
-            const co2Elektrik = (yillikElektrikKullanimi / 1000) * kwhToMetrikTonKatsayisi;
-            document.getElementById("sonucElektrik").innerHTML = `Elektrik kaynaklı CO₂ emisyonu: ${co2Elektrik.toFixed(2)} metrik ton`;
+        const yillikElektrikKullanimi = parseFloat(document.getElementById("yillikElektrikKullanimi").value);
+        const dogalgazTuketimi = parseFloat(document.getElementById("dogalgazTuketimi").value);
+        const motorinTuketimi = parseFloat(document.getElementById("motorinTuketimi").value);
+        const komurTuketimi = parseFloat(document.getElementById("komurTuketimi").value);
 
-            document.getElementById("soru1").style.display = "none";
-            document.getElementById("soru2").style.display = "block";
-            soruIndex++;
-        }
+        const katsayiDogalgaz = 2.3;
+        const katsayiMotorin = 2.7;
+        const katsayiKomur = 3;
+        const kwhToMetrikTonKatsayisi = 0.84;
+
+        const co2Elektrik = (yillikElektrikKullanimi / 1000) * kwhToMetrikTonKatsayisi;
+        const co2Dogalgaz = dogalgazTuketimi * katsayiDogalgaz;
+        const co2Motorin = motorinTuketimi * katsayiMotorin;
+        const co2Komur = komurTuketimi * katsayiKomur;
+
+        document.getElementById("sonucElektrik").innerHTML = `Elektrik kaynaklı CO₂ emisyonu: ${co2Elektrik.toFixed(2)} metrik ton`;
+        document.getElementById("sonucDogalgaz").innerHTML = `Doğalgaz kaynaklı CO₂ emisyonu: ${co2Dogalgaz.toFixed(2)} metrik ton`;
+        document.getElementById("sonucMotorin").innerHTML = `Motorin/Fuel Oil kaynaklı CO₂ emisyonu: ${co2Motorin.toFixed(2)} metrik ton`;
+        document.getElementById("sonucKomur").innerHTML = `Kömür kaynaklı CO₂ emisyonu: ${co2Komur.toFixed(2)} metrik ton`;
+
+        document.getElementById("soru1").style.display = "none";
+        document.getElementById("soru2").style.display = "block";
+        soruIndex++;
+    }
 
         function soru2Sonraki() {
             const servisOtobusSayisi = parseFloat(document.getElementById("servisOtobusSayisi").value);
@@ -175,11 +251,13 @@
         }
 
         function soru3Sonraki() {
-            const aracSayisi = parseFloat(document.getElementById("aracSayisi").value);
-            const seyahatMesafesiAraba = parseFloat(document.getElementById("seyahatMesafesi").value);
-            const katsayiAraba = 0.02;
-            const arabaUlasimCO2Emisyonu = ((aracSayisi * 2 * seyahatMesafesiAraba * 240) / 100) * katsayiAraba;
-            document.getElementById("sonucArabaUlasim").innerHTML = `Ulaşım (Araba) CO₂ emisyonu: ${arabaUlasimCO2Emisyonu.toFixed(2)} metrik ton`;
+            const UcakSayisi = parseFloat(document.getElementById("ucakSayisi").value);
+            const toplamUcakSayisi = parseFloat(document.getElementById("toplamUcakSayisi").value);
+            const ucakSeyahatMesafesi = parseFloat(document.getElementById("ucakSeyahatMesafesi").value);
+            const yillikIsGunSayisi = 240;
+            const katsayiUcak = 0.03;
+            const ulasimUcakCO2Emisyonu = ((UcakSayisi * toplamUcakSayisi * ucakSeyahatMesafesi) / 100) * katsayiUcak;
+            document.getElementById("sonucUcakUlasim").innerHTML = `Ulaşım (Uçak) CO₂ emisyonu: ${ulasimUcakCO2Emisyonu.toFixed(2)} metrik ton`;
 
             document.getElementById("soru3").style.display = "none";
             document.getElementById("soru4").style.display = "block";
@@ -187,23 +265,71 @@
         }
 
         function soru4Sonraki() {
+            const aracSayisi = parseFloat(document.getElementById("aracSayisi").value);
+            const seyahatMesafesiAraba = parseFloat(document.getElementById("seyahatMesafesi").value);
+            const katsayiAraba = 0.02;
+            const arabaUlasimCO2Emisyonu = ((aracSayisi * 2 * seyahatMesafesiAraba * 240) / 100) * katsayiAraba;
+            document.getElementById("sonucArabaUlasim").innerHTML = `Ulaşım (Araba) CO₂ emisyonu: ${arabaUlasimCO2Emisyonu.toFixed(2)} metrik ton`;
+
+            document.getElementById("soru4").style.display = "none";
+            document.getElementById("soru5").style.display = "block";
+            soruIndex++;
+        }
+
+        function soru5Sonraki() {
             const motosikletSayisi = parseFloat(document.getElementById("motosikletSayisi").value);
             const seyahatMesafesiMotosiklet = parseFloat(document.getElementById("seyahatMesafesi").value);
             const katsayiMotosiklet = 0.01;
             const motosikletUlasimCO2Emisyonu = ((motosikletSayisi * 2 * seyahatMesafesiMotosiklet * 240) / 100) * katsayiMotosiklet;
             document.getElementById("sonucMotosikletUlasim").innerHTML = `Ulaşım (Motosiklet) CO₂ emisyonu: ${motosikletUlasimCO2Emisyonu.toFixed(2)} metrik ton`;
 
-            document.getElementById("soru4").style.display = "none";
+            document.getElementById("soru5").style.display = "none";
+            document.getElementById("soru6").style.display = "block";
+        }
+
+        function soru6Sonraki() {
+            const gunesEnerjisi = parseFloat(document.getElementById("gunesEnerjisi").value);
+            const ruzgarEnerjisi = parseFloat(document.getElementById("ruzgarEnerjisi").value);
+            const biyogazEnerjisi = parseFloat(document.getElementById("biyogazEnerjisi").value);
+            const jeotermalEnerjisi = parseFloat(document.getElementById("jeotermalEnerjisi").value);
+            const dogalgazTermikEnerjisi = parseFloat(document.getElementById("dogalgazTermikEnerjisi").value);
+
+            const kwhToMetrikTonKatsayisi = 0.84;
+
+            const co2Gunes = (gunesEnerjisi / 1000) * kwhToMetrikTonKatsayisi;
+            const co2Ruzgar = (ruzgarEnerjisi / 1000) * kwhToMetrikTonKatsayisi;
+            const co2Biyogaz = (biyogazEnerjisi / 1000) * kwhToMetrikTonKatsayisi;
+            const co2Jeotermal = (jeotermalEnerjisi / 1000) * kwhToMetrikTonKatsayisi;
+            const co2DogalgazTermik = (dogalgazTermikEnerjisi / 1000) * kwhToMetrikTonKatsayisi;
+
+            document.getElementById("sonucGunes").innerHTML = `Güneş Enerjisi CO₂ emisyonu: ${co2Gunes.toFixed(2)} metrik ton`;
+            document.getElementById("sonucRuzgar").innerHTML = `Rüzgar Enerjisi CO₂ emisyonu: ${co2Ruzgar.toFixed(2)} metrik ton`;
+            document.getElementById("sonucBiyogaz").innerHTML = `Biyogaz/Biyokütle Enerjisi CO₂ emisyonu: ${co2Biyogaz.toFixed(2)} metrik ton`;
+            document.getElementById("sonucJeotermal").innerHTML = `Jeotermal Enerjisi CO₂ emisyonu: ${co2Jeotermal.toFixed(2)} metrik ton`;
+            document.getElementById("sonucDogalgazTermik").innerHTML = `Doğalgaz Termik Santral'de Doğalgaz Üretimi CO₂ emisyonu: ${co2DogalgazTermik.toFixed(2)} metrik ton`;
+
+            document.getElementById("soru6").style.display = "none";
             document.getElementById("sonuclar").style.display = "block";
         }
 
         function hesaplaToplamEmisyon() {
             const co2Elektrik = parseFloat(document.getElementById("sonucElektrik").innerHTML.split(": ")[1]);
+            const co2Dogalgaz = parseFloat(document.getElementById("sonucDogalgaz").innerHTML.split(": ")[1]);
+            const co2Motorin = parseFloat(document.getElementById("sonucMotorin").innerHTML.split(": ")[1]);
+            const co2Komur = parseFloat(document.getElementById("sonucKomur").innerHTML.split(": ")[1]);
             const co2Ulasim = parseFloat(document.getElementById("sonucUlasim").innerHTML.split(": ")[1]);
             const co2ArabaUlasim = parseFloat(document.getElementById("sonucArabaUlasim").innerHTML.split(": ")[1]);
             const co2MotosikletUlasim = parseFloat(document.getElementById("sonucMotosikletUlasim").innerHTML.split(": ")[1]);
+            const co2UcakUlasim = parseFloat(document.getElementById("sonucUcakUlasim").innerHTML.split(": ")[1]);
+            const co2Gunes = parseFloat(document.getElementById("sonucGunes").innerHTML.split(": ")[1]);
+            const co2Ruzgar = parseFloat(document.getElementById("sonucRuzgar").innerHTML.split(": ")[1]);
+            const co2Biyogaz = parseFloat(document.getElementById("sonucBiyogaz").innerHTML.split(": ")[1]);
+            const co2Jeotermal = parseFloat(document.getElementById("sonucJeotermal").innerHTML.split(": ")[1]);
+            const co2DogalgazTermik = parseFloat(document.getElementById("sonucDogalgazTermik").innerHTML.split(": ")[1]);
 
-            const toplamEmisyon = co2Elektrik + co2Ulasim + co2ArabaUlasim + co2MotosikletUlasim;
+            const toplamEnerjiUretimCO2 = co2Gunes + co2Ruzgar + co2Biyogaz + co2Jeotermal + co2DogalgazTermik;
+
+            const toplamEmisyon = co2Elektrik + co2Dogalgaz + co2Motorin + co2Ulasim + co2ArabaUlasim + co2MotosikletUlasim + co2UcakUlasim - toplamEnerjiUretimCO2;
             document.getElementById("sonucToplamEmisyon").innerHTML = `Toplam CO₂ emisyonu: ${toplamEmisyon.toFixed(2)} metrik ton`;
         }
 
@@ -212,14 +338,24 @@
             document.getElementById("soru2").style.display = "none";
             document.getElementById("soru3").style.display = "none";
             document.getElementById("soru4").style.display = "none";
+            document.getElementById("soru5").style.display = "none";
             document.getElementById("sonuclar").style.display = "none";
 
             document.getElementById("yillikElektrikKullanimi").value = "";
+            document.getElementById("dogalgazTuketimi").value = "";
+            document.getElementById("motorinTuketimi").value = "";
+            document.getElementById("komurTuketimi").value = "";
             document.getElementById("servisOtobusSayisi").value = "";
             document.getElementById("toplamSeferSayisi").value = "";
             document.getElementById("seyahatMesafesi").value = "";
             document.getElementById("aracSayisi").value = "";
+            document.getElementById("ucakSeyahatMesafesi").value = "";
             document.getElementById("motosikletSayisi").value = "";
+            document.getElementById("gunesEnerjisi").value = "";
+            document.getElementById("ruzgarEnerjisi").value = "";
+            document.getElementById("biyogazEnerjisi").value = "";
+            document.getElementById("jeotermalEnerjisi").value = "";
+            document.getElementById("dogalgazTermikEnerjisi").value = "";
         }
     </script>
 
